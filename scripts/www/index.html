@@ -1,88 +1,865 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <link rel="stylesheet" href="./static/css/styles.css" />
-        <meta
-            http-equiv="Content-Security-Policy"
-            content="default-src * 'unsafe-inline' 'unsafe-eval'"
-        />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Tauri App</title>
-        <script src="./static/js/main.js"></script>
-    </head>
-    <body>
-        <main class="container">
-            <h1>Welcome to TauriMan</h1>
+<html lang="zh-CN">
 
-            <div class="row">
-                <a
-                    href="https://tauri.app"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <img
-                        src="./assets/tauri.svg"
-                        class="logo tauri"
-                        alt="Tauri logo"
-                    />
-                </a>
-                <a
-                    href="https://pakeplus.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <img
-                        src="https://hk.gh-proxy.org/https://github.com/Sjj1024/PakePlus/blob/main/app-icon.png"
-                        class="logo vanilla"
-                        alt="JavaScript logo"
-                    />
-                </a>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+     <link rel="stylesheet" href="https://lcy20.netlify.app/yyts.css">
+      <link rel="stylesheet" href="https://lcy20.netlify.app/lianxierweima.css">
+  <link rel="stylesheet" href="appdenglu.css">
+   <link rel="stylesheet" href="appgonggao.css">
+      <link rel="stylesheet" href="appyykp.css">
+    
+    <title id="targetTitle"></title>  
+   
+  <!-- 核心viewport配置 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <style>
+    /* CSS禁止缩放补充 */
+    * {
+      touch-action: manipulation;
+      -ms-touch-action: manipulation;
+      -webkit-text-size-adjust: 100%;
+    }
+    html {
+      -ms-content-zooming: none;
+    }
+  </style>
+<style>
+/* 萌系样式：马卡龙色+弹跳动画 网络速率*/
+.cute-speed {
+  
+  font-size: 10px;
+    position: fixed;
+  top: 35px;
+  right: 5px;
+  
+}
+/* 数字弹跳动画 */
+@keyframes bounce {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); color: #ff69b4; }
+  100% { transform: scale(1); }
+}
+.cute-speed.active {
+  animation: bounce 0.5s ease infinite;
+}
+</style>
+
+    <style>
+    .dh{
+      position:absolute;
+      top:1px;
+      left:10px;
+      text-align:center;
+      padding:5px;
+      border-radius:0px 10px 10px 10px;
+      padding-bottom:15px;
+      padding-top:15px;
+      text-align:left;
+      color:#f20c00;
+      }
+     
+    .app{
+      vertical-align: middle;
+      width:20px;
+      
+      }
+  
+    .sj{
+      position:absolute;
+      bottom:2%;
+      
+      padding:5px;
+      border-radius:10px 10px 10px 10px;
+     
+      } 
+    .bjyy{
+      position:absolute;
+      
+      padding:5px;
+      border-radius:0px 10px 10px 0px;
+     
+      }
+    /*网络监测弹窗 自定义弹窗样式 */
+   .custom-alert {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: yellow;
+      color: red;
+      padding: 20px;
+      border: 1px solid #ccc;
+      z-index: 1000;
+      border-radius: 5%;
+    }
+  body{
+background-image: url(bj.gif);
+      background-size: cover; /* 修改为cover，使图片铺满满屏 */
+      background-attachment: fixed; /* 可选，使背景图片固定不随页面滚动 */
+      margin: 0; /* 去除默认边距 */
+      padding: 0; /* 去除默认内边距 */
+    }
+  </style>
+        <style>
+        /* 导航按钮*/
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .sidebar-toggle {
+            position: fixed;
+            top:45px;
+            right: 20px;
+            transform: translateY(-50%);
+            width: 5px;
+            height: 5px;
+            background: #e4c6d0;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .sidebar-toggle:hover {
+            background: #ffe2e2;
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .sidebar-toggle span {
+            display: block;
+            width: 20px;
+            height: 1px;
+            background: white;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .sidebar-toggle span::before,
+        .sidebar-toggle span::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: white;
+            transition: all 0.3s ease;
+        }
+        
+        .sidebar-toggle span::before {
+            top: -8px;
+        }
+        
+        .sidebar-toggle span::after {
+            top: 8px;
+        }
+        
+        .sidebar {
+            position: fixed;
+            top: 0;
+            border-radius:20px 0px 0px 20px;
+            right: -300px;
+            width: 300px;
+            height: 100%;
+            background: #edd1d8;
+            color: white;
+            z-index: 999;
+            transition: right 0.4s ease;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .sidebar.active {
+            right: 0;
+        }
+        
+        .sidebar-header {
+            padding: 25px;
+            border-radius:20px 0px 0px 0px;
+            background: #e5deb9;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .sidebar-header h2 {
+            font-size: 1.5rem;
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .close-btn:hover {
+            transform: rotate(90deg);
+        }
+        
+        .sidebar-menu {
+            padding: 20px 0;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+        
+        .sidebar-menu ul {
+            list-style: none;
+        }
+        
+        .sidebar-menu li {
+            padding: 15px 25px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            border-left: 3px solid transparent;
+        }
+        
+        .sidebar-menu li:hover {
+            background: #34495e;
+            border-left: 3px solid #3498db;
+        }
+        
+        .sidebar-menu li i {
+            margin-right: 15px;
+            font-size: 1.2rem;
+            width: 25px;
+            text-align: center;
+        }
+        
+        .sidebar-footer {
+            padding: 20px;
+            text-align: center;
+            background: #e5deb9;
+            font-size: 0.9rem;
+            color: #95a5a6;
+        }
+        
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 250px;
+            }
+            
+            .sidebar-toggle {
+                right: 10px;
+                width: 50px;
+                height: 50px;
+            }
+        }
+    </style>
+</head>
+
+<body >
+<!--网络速率-->
+  <div id="net-speed" class="cute-speed">✨ 检测中... 🚀</div>
+
+<! -- 音乐卡片 --->
+<div class="music-player">
+        <div class="toggle-btn">
+            <i class="fas fa-music"></i>
+        </div>
+        
+        <div class="player-content">
+            <div class="album-cover">
+                <img src="https://lcy20.netlify.app/appyyfm.png" alt="专辑封面">
             </div>
-            <p>Click to get data</p>
-            <form class="row" id="greet-form">
-                <input id="greet-input" placeholder="Enter a name..." />
-                <button type="submit" id="getdata">GET DATA</button>
+            
+            <div class="player-details">
+                <div class="song-info">
+                    <div class="song-title">此背景音乐由归档-时光卷轴站点提供</div>
+                  
+                </div>
+                
+                <div class="progress-area">
+                    <div class="progress-bar">
+                        <div class="progress"></div>
+                    </div>
+                    <div class="timer">
+                        <span class="current">0:00</span>
+                        <span class="duration">4:30</span>
+                    </div>
+                </div>
+                
+                <div class="controls">
+                    <i class="fas fa-random"></i>
+                    <i class="fas fa-step-backward"></i>
+                    <div class="play-pause">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <i class="fas fa-step-forward"></i>
+                    <i class="fas fa-redo"></i>
+                </div>
+                
+                <div class="volume-control">
+                    <i class="fas fa-volume-up"></i>
+                    <div class="volume-slider">
+                        <div class="volume-progress"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<!--  导航菜单
+  
+    <div class="sidebar-toggle" id="sidebarToggle">
+        <span></span>
+    </div>
+    
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>导航菜单</h2>
+            <button class="close-btn" id="closeSidebar">×</button>
+        </div>
+        <div class="sidebar-menu">
+            <ul>
+            
+                <li>
+                    <i class="fas fa-chart-bar"></i>   <a href="https://lcy20.netlify.app/yinyue/index.html">归档音乐播放器</a>
+   
+                </li>
+                <li>
+                    <i class="fas fa-chart-bar"></i>   <a href="https://lcy20.netlify.app/tpxiugai.html">图片尺寸修改</a>
+   
+                </li>
+                <li>
+                    <i class="fas fa-chart-bar"></i> <a href="https://lcy20.netlify.app/wode.html">作者简介</a>
+    
+                </li>
+               <li>
+                    <i class="fas fa-chart-bar"></i> <a href="https://wenjian.netlify.app">个人文件库</a>
+    
+              
+                </li>
+                <li>
+                    <i class="fas fa-chart-bar"></i> 通知中心
+                </li>
+                <li>
+                    <i class="fas fa-chart-bar"></i> 帮助中心
+                </li>
+                <li>
+                    <i class="fas fa-chart-bar"></i> 日程安排
+                </li>
+                <li>
+                    <i class="fas fa-chart-bar"></i> 消息中心
+                </li>
+                <li>
+                      <a href="rzzq.png"><img width="100%" src="rzzq.png"/></a>
+   
+                </li> 
+                 <li>
+                      <a href="rj.png"><img width="100%" src="rj.png"/></a>
+   
+                </li>
+                  <li>
+                      <a href="https://lcy20.netlify.app/lianxierweima.jpg"><img width="100%" src="https://lcy20.netlify.app/lianxierweima.jpg"/></a>
+   
+                </li>
+            </ul>
+        </div>
+        <div class="sidebar-footer">
+           <div class="sj" style="font-size:20px;color:#fff"><span id="runtime_span"></span></div>
+ 
+        </div>
+    </div>
+    
+    <script>
+        const toggleBtn = document.getElementById('sidebarToggle');
+        const sidebar = document.getElementById('sidebar');
+        const closeBtn = document.getElementById('closeSidebar');
+        
+        toggleBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+        });
+        
+        closeBtn.addEventListener('click', () => {
+            sidebar.classList.remove('active');
+        });
+        
+        // 点击侧边栏外部关闭
+        document.addEventListener('click', (e) => {
+            if (sidebar.classList.contains('active') && 
+                !sidebar.contains(e.target) && 
+                !toggleBtn.contains(e.target)) {
+                sidebar.classList.remove('active');
+            }
+        });
+        
+        // 添加键盘支持：ESC键关闭侧边栏
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && sidebar.classList.contains('active')) {
+                sidebar.classList.remove('active');
+            }
+        });
+    </script>
+
+
+
+-->
+
+
+
+
+
+  <div class="card">
+        <!-- 登录页面 -->
+        <div id="loginTab" class="tab-content active">
+            <h2 class="page-title"> <img width="10%" src="appIcon.png"/>归档-时光卷轴</h2>
+            <form>
+                <div class="form-group">
+                    <input type="text" id="loginUsername" class="input-field" required>
+                    <label for="loginUsername" class="input-label">用户名:</label>
+                </div>
+
+                <div class="form-group">
+                    <input type="password" id="loginPassword" class="input-field" required>
+                    <label for="loginPassword" class="input-label">密码:</label>
+                </div>
+
+                <button type="button" class="submit-btn" onclick="handleLogin()">登录</button>
             </form>
-            <div class="functions">
-                <a href="./book.html" target="_self">跳转到book.html</a>
-                <a
-                    href="https://www.baidu.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    >跳到百度blank
-                </a>
-                <a
-                    href="https://www.baidu.com"
-                    target="_self"
-                    rel="noopener noreferrer"
-                >
-                    跳到百度self
-                </a>
-                <button onclick="sayHello()">点击我</button>
-                <button onclick="sayHello()">下载文件</button>
-                <button onclick="sayHello()">上传文件</button>
-                <button onclick="sayHello()">访问相机</button>
-                <button onclick="sayHello()">访问麦克风</button>
-                <button onclick="sayHello()">访问相册</button>
-                <button class="btn" onclick="openWechat()">打开微信</button>
-                <button class="btn" onclick="openWechatScan()">
-                    打开扫一扫
-                </button>
-                <button class="btn" onclick="openZhihu()">打开知乎</button>
-                <button onclick="sayHello()">打开抖音</button>
-                <button onclick="sayHello()">用浏览器打开</button>
-                <button>打开知乎</button>
+
+            <div class="switch-link">
+                还没有账号？ <a href="javascript:showTab('registerTab')">立即注册</a>
             </div>
-            <p id="greet-msg"></p>
-            <img src="./static/image/cursor.jpeg" alt="logo" />
-            <video
-                src="https://hk.gh-proxy.org/https://github.com/Sjj1024/PakePlus/blob/main/docs/static/videos/pakeplus.mp4"
-                autoplay
-                controls
-                style="width: 100%; height: 100%"
-            ></video>
-            <audio src="./static/music/yin.mp3" controls></audio>
-        </main>
-    </body>
+
+            <div class="switch-link">
+                忘记密码？ <a href="javascript:showTab('forgotTab')">找回密码</a>
+            </div>
+
+            <div id="loginError" class="error-message"></div>
+        </div>
+
+        <!-- 注册页面 -->
+        <div id="registerTab" class="tab-content">
+            <h2 class="page-title">未开放注册</h2>
+         
+        <!--
+         <form>
+                <div class="form-group">
+                    <input type="text" id="registerUsername" class="input-field" required>
+                    <label for="registerUsername" class="input-label">用户名:</label>
+                    <div id="usernameError" class="error-message"></div>
+                </div>
+
+                <div class="form-group">
+                    <input type="password" id="registerPassword" class="input-field" required minlength="6">
+                    <label for="registerPassword" class="input-label">密码:（至少1位）</label>
+                </div>
+
+                <div class="form-group captcha-container">
+                    <input type="text" id="captchaInput" class="input-field" required placeholder="请输入验证码">
+                    <span id="captcha" class="input-field" onclick="refreshCaptcha()"></span>
+                </div>
+
+                <button type="button" class="submit-btn" onclick="handleRegister()">注册</button>
+            </form>
+         -->
+            <div class="switch-link">
+                已有账号？ <a href="javascript:showTab('loginTab')">返回登录</a>
+            </div>
+
+            <div id="registerError" class="error-message"></div>
+        </div>
+
+        <!-- 忘记密码页面 -->
+        <div id="forgotTab" class="tab-content">
+            <h2 class="page-title">找回密码</h2>
+            <form>
+                <div class="form-group">
+                    <input type="text" id="forgotUsername" class="input-field" required>
+                    <label for="forgotUsername" class="input-label">用户名:</label>
+                </div>
+
+                <button type="button" class="submit-btn" onclick="handleForgotPassword()">获取新密码</button>
+            </form>
+
+            <div class="switch-link">
+                返回登录 <a href="javascript:showTab('loginTab')">点击这里</a>
+            </div>
+
+            <div id="forgotError" class="error-message"></div>
+            <div id="newPasswordMsg" class="error-message" style="color: #2ecc71;"></div>
+        </div>
+    </div>
+    
+    <div class="dh">
+    <p><img class="app" src="appIcon.png"/> App v1.7.4</p>
+     </div>  
+     
+   
+ 
+
+   
+   
+     
+  <div style="font-size: 100%;color:#000000;position: fixed;  bottom: 0; width: 100%;list-style-type: none;margin: 0;  padding: 0; overflow: hidden;z-index: 9999; background:linear-gradient(to left,rgb(198, 255, 221), rgb(251, 215, 134) );text-align: center;"><a href='gdq/index.html'>游戏</a>&nbsp;&nbsp;<span class="年份检测" id="yearSpan"></span> ©  追吻辰星 ICP 未备案 
+  <!--
+  <hr />
+  『<span id="runtime_span">
+	</span>』
+ </div> 
+ 
+ -->
+ 
+       </div>
+
+
+      
+      <script>
+<!--网络速率-->
+// 核心逻辑：单标签实现网速检测
+const speedTag = document.getElementById('net-speed');
+let testFile = "https://cdn.jsdelivr.net/gh/liyupi/pic-lib/blob/main/test/100kb.txt"; // 公共测试文件（100KB）
+let fileSize = 102400; // 测试文件大小（100KB）
+
+// 网速检测函数
+function checkNetSpeed() {
+  speedTag.classList.add('active');
+  speedTag.textContent = "✨ 测速中... 🚀";
+  
+  const startTime = performance.now();
+  fetch(testFile)
+    .then(res => res.blob())
+    .then(blob => {
+      const endTime = performance.now();
+      const duration = (endTime - startTime) / 1000; // 耗时（秒）
+      const speedKB = (fileSize / 1024) / duration; // KB/s
+      const speedMB = speedKB / 1024; // MB/s
+      
+      // 动态显示结果（自动切换单位）
+      if (speedMB >= 1) {
+        speedTag.textContent = `✨ 网速：${speedMB.toFixed(2)} MB/s 🚀`;
+      } else {
+        speedTag.textContent = `✨ 网速：${speedKB.toFixed(1)} KB/s 🚀`;
+      }
+      speedTag.classList.remove('active');
+    })
+    .catch(err => {
+      speedTag.textContent = "❌ 测速失败，点击重试～";
+      speedTag.classList.remove('active');
+    });
+}
+
+// 初始加载时测速 + 点击标签重新测速
+window.onload = checkNetSpeed;
+speedTag.addEventListener('click', checkNetSpeed);
+</script>
+     
+<script>
+// 获取当前年份并插入标签
+document.getElementById("yearSpan").innerText = new Date().getFullYear();
+</script>
+       
+       
+       <!--公告按钮弹窗功能模块-->
+<div>
+        <button class="btn-show" id="showPopup">查看公告</button>
+    
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup">
+            <div class="popup-header">
+                <span class="badge">最新</span>
+                <h2 class="popup-title">APP公告栏</h2>
+                <div class="popup-close" id="closePopup">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+           <div class="popup-content">
+           <center><img width="70px" src="appIcon.png"/></center>
+          	<br>
+				
+     <p><strong>APP更新时间：2026年1月6日 5:50</strong></p>
+                <p>APP的更新设计：</p>
+                <ul>  
+                <li>为防止不良人员恶意破坏APP或盗改，开发者已未APP做了源码防逆向加密处理！</li>
+               
+              
+                <li>增加APP登陆页面的背景音乐弹窗播放卡，解决原背景音乐无法暂停一直循环问题，音乐播放卡的功能仅暂时测试，后续外观和功能持续更新设计，以免出现问题迭代</li>
+               
+                <li>继2025年10月13日起，本APP的更新版本优化，包括归档内容的更新，将由官网站点公告提示，关注以上两个站点，以防错过最新公告！为防止公告的信息传递，请以官网站点公告为准，APP和电脑版内只作大致声明，公告信息的传递可能不全，所有的公告以官网基准！</li>
+                <li>APP新增侧边导航栏，使其增加更多功能开发</li>
+                <li>本APP和网站同步新增一键清除本地存储功能，可以将存储在手机本地数据，彻底清除，不留痕迹，网页端清除会清除已注册账号密码，没有管理员宝宝后台绑定账号的用户，原注册账号将不能登陆！公告底部可点击一键清除！</li>
+					
+                    <li>优化APP设计，增加账号注册，原有登陆基础上增加注册功能，使用户能够注册账号并登陆，注册的账号仅在手机本地存储，未使用云端数据库存储，不可多台设备APP登陆使用，能够让用户将账号握在自己手里，以防止信息和数据泄露，登陆功能的更改暂时没有设计修改密码功能，如若忘记密码，可以清除APP数据后重新注册账号，如果想永久的使用账号可联系管理员添加注册时的账号密码进行绑定，绑定后可在多台设备使用APP使永久使用，无需注册！
+		，保护用户隐私</li>
+                    <li>本APP和网站为归档时光卷轴，为个人类使用，涉及隐私，未在应用市场发布，未经授权允许禁止转发他人下载使用，APP和网站的使用权仅设计者:~颖~所有，未在网络上公开程序源码，未征得开发者允许禁止解析源码，一经发现未授权和允许转发下载，严肃处理！
+		</li>
+  <li>						从2025年9月16日起暂时取消APP和站点的注册功能，对外开放时间后续关注公告开放，如需登陆请联系管理员宝宝申请！，电脑版未暂停注册功能！					</li> 
+                    <li>如需永久使用账号，可联系管理员进行绑定</li>
+                </ul>
+                <p>隐私声明：本程序类型为H5 Web程序</p>
+                <ul>
+                    <li>本软件的一切知识产权，以及与本软件相关的所有信息内容，包括但不限于：文字表述及其组合、图标、图饰、图像、图表、色彩、界面设计、版面框架、有关数据、附加程序、印刷材料或电子文档等均为开发者所有，受著作权法和国际著作权条约以及其他知识产权法律法规的保护。
+				</li>
+                    <li>我们努力保障信息安全，以防信息的丢失、不当使用、未经授权阅览或披露。我们使用各种安全技术以保障信息的安全。例如，我们将努力采取加密等安全保护措施，防止用户信息遭到未经授权的访问或修改、泄露、毁损或丢失。我们建立严格的管理制度和流程以保障信息的安全。例如，我们严格限制访问信息的人员范围，并进行审计，要求他们遵守保密义务。				</li>
+                    <li>用户必须保证其使用本软件时将遵从国家、地方法律法规、行业惯例和社会公共道德，不会利用本软件进行存储、发布、传播如下信息和内容：违反国家法律法规政策的任何内容（信息）；违反国家规定的政治宣传和/或新闻信息；涉及国家秘密和或安全的信息；封建迷信和/或淫秽、色情、下流的信息或教唆犯罪的信息；博彩有奖、赌博游戏；违反国家民族和宗教政策的信息，防碍互联网运行安全的信息；侵害他人合法权益的信息和/或其他有损于社会秩序、社会治安、公共道德的信息或内容，用户同时承诺不得为他人发布上述不符合国家规定和/或本服务条款约定的信息内容提供任何便利，包括但不限于设置URL、BANNER链接等。</li>
+                    <li>如您对本声明或其他相关事宜有疑问，请根据我们提供的联系方式将您的问题通过邮箱发送至1837601513@qq.com我们将尽快审核所涉问题，十五天内予以回复。
+			 <li>
+			维护＆运营:『廖聪颖』<br>
+   <a href="rzzq.png">版权©拥有</a>:『廖聪颖』<br>
+   [2024起] © ICP 未备案 <br>NetLify服务提供<br>
+    <a href="https://lcy20.netlify.app/cjk/index.html">我的存金码</a><br><br>
+    <center>
+      <a href='https://lcy20.netlify.app/'>APP官网下载地址</a><br><br><br>
+      </center>
+      
+        <p>更多功能程序：</p>
+                <ul>  
+               <li>
+                    <i class="fas fa-chart-bar"></i> <a href="https://lcy20.netlify.app/ax/index.html">跳动爱心</a>
+    
+                </li>
+                <li>
+                    <i class="fas fa-chart-bar"></i>   <a href='https://lcy20.netlify.app/yinyue/'>归档音乐播放器</a>
+   
+                </li>
+                <li>
+                    <i class="fas fa-chart-bar"></i>   <a href='https://lcy20.netlify.app/tpxiugai'>图片尺寸修改</a>
+   
+                </li>
+                <li>
+                    <i class="fas fa-chart-bar"></i> <a href='https://lcy20.netlify.app/wode'>作者简介</a>
+    
+                </li>
+                  <li>
+                    <i class="fas fa-chart-bar"></i> <a href='https://lcy20.netlify.app/tlp.html'>塔罗牌</a>
+    
+                </li>
+               <li>
+                    <i class="fas fa-chart-bar"></i> <a href="https://wenjian.netlify.app">个人文件库</a>
+    
+              
+                </li>
+                 <li>
+                    <i class="fas fa-chart-bar"></i> <a href="https://lcy20.netlify.app/typecho.html">Typecho(不见桃花不见秋版博客系统php自建)</a>
+    
+              
+                </li>
+                <li>				
+                <i class="fas fa-chart-bar"></i> 
+                <a href='https://lcy20.netlify.app/pakeplus'>PakePlus打包工具下载</a> 					 
+                </li>
+                  <li>
+                    <i class="fas fa-chart-bar"></i> <a href="https://lcy20.netlify.app/webaide.html">WebAIDE</a>
+    
+              
+                </li>
+            
+                  </ul>
+      
+      <center>
+    <p>著作权:</p>
+       <a href="rzzq.png"><img width="70%" src="rzzq.png"/></a><br><br>
+       <p>归档日记：</p>
+     <a href="rj.png"><img width="63%" src="rj.png"/></a><br><br>
+     <p>联系方式:</p>
+     <a href="https://lcy20.netlify.app/lianxierweima.jpg"><img width="85%" src="https://lcy20.netlify.app/lianxierweima.jpg"/></a><br>
+    
+     </center>
+   
+ 	</li>
+                </ul>
+                 <p>网站测压工具：</p>
+                <ul>  
+                 <li>
+                    <i class="fas fa-chart-bar"></i>
+					 <a href="https://lcy20.netlify.app/GoldenEye.html">
+						 GoldenEye测压工具
+					 </a>
+    
+              
+                </li>
+                		<li>
+                    <i class="fas fa-chart-bar"></i>
+					 <a href="https://lcy20.netlify.app/wrk.html">
+						 wrk测压工具
+					 </a>
+    
+              
+						</li>
+                <li>
+                    <i class="fas fa-chart-bar"></i>
+					 <a href="https://lcy20.netlify.app/Siege.html">
+						 Siege测压工具
+					 </a>
+    
+              
+				</li>
+              <li>
+                    <i class="fas fa-chart-bar"></i>
+					 <a href="https://lcy20.netlify.app/JMeter.html">
+						 JMeter测压工具
+					 </a>
+    
+              
+			  </li>
+					<li>
+                    <i class="fas fa-chart-bar"></i>
+					 <a href="https://lcy20.netlify.app/Locust.html">
+						 Locust测压工具
+					 </a>
+    
+              
+					</li>
+					<li>
+                    <i class="fas fa-chart-bar"></i>
+					 <a href="https://lcy20.netlify.app/apache2-utils.html">
+						 apache2-utils测压工具
+					 </a>
+    
+              
+					</li>
+					<li>
+                    <i class="fas fa-chart-bar"></i>
+					 <a href="https://lcy20.netlify.app/zerotermux.html">
+						 zerotermux工具
+					 </a>
+    
+              
+					</li>
+				</ul>
+            </div>
+            
+            <div class="popup-footer">
+                <button class="btn btn-cancel" id="cancelBtn">
+                    <i class="fas fa-times"></i> 取消
+                </button>
+               
+            </div>
+        </div>
+    </div>
+</div>
+       
+       
+               <script src="https://lcy20.netlify.app/title.js"></script>
+   <script src="https://lcy20.netlify.app/appyykp.js"></script>
+  
+        <script src="https://lcy20.netlify.app/appyyts.js"></script>
+  <script src="https://lcy20.netlify.app/appuserwgb.js"></script>
+   <script src="https://lcy20.netlify.app/appgonggao.js"></script>
+    <script>
+  function show_runtime() {
+    window.setTimeout("show_runtime()", 1000);
+    X = new Date("2024/06/25 00:00");
+    Y = new Date();
+    T = (Y.getTime() - X.getTime());
+    M = 24 * 60 * 60 * 1000;
+    a = T / M;
+    A = Math.floor(a);
+    b = (a - A) * 24;
+    B = Math.floor(b);
+    c = (b - B) * 60;
+    C = Math.floor((b - B) * 60);
+    D = Math.floor((c - C) * 60);
+    runtime_span.innerHTML = "本APP程序已运行: " + A + "天" + B + "小时" + C + "分" + D + "秒"
+  }
+  show_runtime();
+
+  function generateQuotes() {
+    const apiUrl = '';
+    return fetch(apiUrl)
+     .then(response => response.json())
+     .then(data => {
+        const quote = data.hitokoto;
+        return quote;
+      })
+  }
+
+  async function createCard() {
+    const cardContainer = document.getElementById('cardContainer');
+    cardContainer.innerHTML = '';
+
+    for (let i = 0; i < 1; i++) {
+      const quote = await generateQuotes();
+      const card = document.createElement('div');
+      card.classList.add('card');
+      card.textContent = quote;
+
+      const copyButton = document.createElement('button');
+      copyButton.classList.add('copy-button')
+
+      copyButton.addEventListener('click', () => {
+        copyToClipboard(quote, card);
+      });
+
+      cardContainer.appendChild(card);
+    }
+  }
+
+  function restart() {
+    createCard();
+  }
+  createCard();
+
+  function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    sidebar.classList.toggle('open');
+    const overlay = document.getElementById('overlay');
+    overlay.classList.toggle('show');
+  }
+</script>
+
+<script>
+  function showCustomAlert(message) {
+    const alertDiv = document.createElement('div');
+    alertDiv.className = 'custom-alert';
+    alertDiv.textContent = message;
+    document.body.appendChild(alertDiv);
+    setTimeout(() => {
+      document.body.removeChild(alertDiv);
+    }, 3000); // 3秒后自动关闭弹窗
+  }
+
+  // 页面加载时先检查网络状态
+  if (navigator.onLine === false) {
+    showCustomAlert('网络已断开，请检查您的网络连接（可能没有 Wi-Fi 或移动数据等网络连接）');
+  }
+
+  // 监听网络断开事件
+  window.addEventListener('offline', function () {
+    showCustomAlert('网络已断开，请检查您的网络连接（可能没有 Wi-Fi 或移动数据等网络连接）');
+  });
+
+  // 监听网络连接事件
+  window.addEventListener('online', function () {
+    showCustomAlert('网络已连接成功！');
+    location.reload(); // 添加这行代码，在网络连接成功时刷新页面
+  });
+</script>
+ <script language = "javascript">
+        let text = document.title +'';
+        let timerId;
+        let times = 0;
+        function newtext() {
+            times++;
+            clearTimeout(timerId);
+            document.title = text.substring(1, text.length) + text.substring(0, 1);
+            text = document.title.substring(0, text.length);
+            let delay = 500;
+            if (times === text.length) {
+                delay = 2000;
+                times = 0;
+                text = document.title +'';
+            }
+            timerId = setTimeout("newtext()", delay);
+        }
+        newtext();
+    </script>
+</body>
+
 </html>
