@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+		<meta name="wap-font-scale" content="no">
+		<title>
+			归档-时光卷轴
+		</title>
+		 <link rel="shortcut icon" href="app.jpg" type="image/x-icon"> 
+		<link rel="stylesheet" href="tanchuang.cs">
+	
+  <!-- 核心viewport配置 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <style>
+    /* CSS禁止缩放补充 */
+    * {
+      touch-action: manipulation;
+      -ms-touch-action: manipulation;
+      -webkit-text-size-adjust: 100%;
+    }
+    html {
+      -ms-content-zooming: none;
+    }
+  </style>
+		  <style>
+    /*网络监测弹窗 自定义弹窗样式 */
+   .custom-alert {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: yellow;
+      color:red;
+      padding: 20px;
+      border: 1px solid #ccc;
+      z-index: 1000;
+      border-radius: 5%;
+    }
+		  </style>
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<link rel="stylesheet" href="csss/base_2.0.css">
+		<link rel="stylesheet" href="csss/comment2.0.css">
+		<link rel="stylesheet" href="csss/swiper4.css">
+		<link rel="stylesheet" href="tanchuang.css">
+		<link rel="stylesheet" href="lianxierweima.css">
+		    <script>
+        function show_runtime() {
+            window.setTimeout("show_runtime()", 1000);
+            X = new
+            Date("2024/06/25 00:00");
+            Y = new Date();
+            T = (Y.getTime() - X.getTime());
+            M = 24 * 60 * 60 * 1000;
+            a = T / M;
+            A = Math.floor(a);
+            b = (a - A) * 24;
+            B = Math.floor(b);
+            c = (b - B) * 60;
+            C = Math.floor((b - B) * 60);
+            D = Math.floor((c - C) * 60);
+            runtime_span.innerHTML = "归档运行: " + A + "天" + B + "小时" + C + "分" + D + "秒"
+        }
+        show_runtime();
+
+        function generateQuotes() {
+            const apiUrl = 'https://v1.hitokoto.cn/';
+
+            return fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    const quote = data.hitokoto;
+                    return quote;
+                })
+                
+        }
+
+        async function createCard() {
+            const cardContainer = document.getElementById('cardContainer');
+            cardContainer.innerHTML = '';
+
+            for (let i = 0; i < 1; i++) {
+                const quote = await generateQuotes();
+                const card = document.createElement('div');
+                card.classList.add('card');
+                card.textContent = quote;
+
+                const copyButton = document.createElement('button');
+                copyButton.classList.add('copy-button')
+
+                copyButton.addEventListener('click', () => {
+                    copyToClipboard(quote, card);
+                });
+
+
+                cardContainer.appendChild(card);
+            }
+        }
+
+        function restart() {
+            createCard();
+        }
+        createCard();
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('open');
+            const overlay = document.getElementById('overlay');
+            overlay.classList.toggle('show');
+        }
+		    </script>
+
+		
+		<script type="text/javascript" async="" src="https://lcy20.netlify.app/jss/ab.min.js">
+		</script>
+		
+		
+		<script src="https://lcy20.netlify.app/jss/hm.js">
+		</script>
+		<script src="https://lcy20.netlify.app/jss/hm(1).js">
+		</script>
+		<script src="https://lcy20.netlify.app/jss/jquery.min.js">
+		</script>
+		<link rel="stylesheet" href="https://lcy20.netlify.app/csss/layer.css" id="layuicss-layer">
+		<style type="text/css">
+			@keyframes animate_dots{0%{opacity:1}to{opacity:0}}@-webkit-keyframes
+			animate_dots{0%{opacity:1}to{opacity:0}}.dot0,.dot1{animation:animate_dots
+			.9s infinite;-moz-animation:animate_dots .9s infinite;-webkit-animation:animate_dots
+			.9s infinite;-o-animation:animate_dots .9s infinite}.dot1{animation-delay:.2s;-webkit-animation-delay:.2s}.dot2{animation:animate_dots
+			.9s infinite;-moz-animation:animate_dots .9s infinite;-webkit-animation:animate_dots
+			.9s infinite;-o-animation:animate_dots .9s infinite;animation-delay:.4s;-webkit-animation-delay:.4s}.dots_item{display:inline-block;margin-right:5px;width:10px;height:10px;border-radius:50%;background:#4886ff}.verify-icon{position:absolute;width:100%;margin-top:70px;text-align:center}.t-embed-loading{width:300px;height:230px}.t-embed-loading,.t-inline-loading{position:relative;background-color:#fff}.t-embed-dots,.t-inline-dots{position:absolute;left:50%;top:50%;margin-left:-22.5px;margin-top:-5px}.t-embed-dot,.t-inline-dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;background:#4886ff}.t-mask{width:100%;width:100vw;height:100%;height:100vh;position:fixed;_position:absolute;left:0;top:0;background:#000;opacity:.5;filter:progid:DXImageTransform.Microsoft.Alpha(opacity=50);z-index:2000000000}
+		</style>
+	</head>
+	<body>
+		<audio autoplay="true"  loop="loop" src="https://lcy20.netlify.app/gdyy.mp3"></audio>
+		<div id="content">
+			<script src="https://lcy20.netlify.app/jss/img.js">
+			</script>
+			<div class="header_v2">
+				
+				<div style="border-radius: 0px 0px 10px 10px;position: fixed;  top: 0; width: 100%;list-style-type: none;margin: 0;  padding: 0; overflow: hidden;z-index: 9999;" class="box_b">
+					<div class="nav">
+						<a href="index.html" class="on" >
+							<span>
+								首页
+							</span>
+						</a>
+						<a href="https://lcy20.netlify.app/gy.html"  >
+							<span>
+								我的
+							</span>
+						</a>	
+					<a>
+							<span id="runtime_span">
+								关于
+							</span>
+					</a>
+						
+				
+						
+						
+					</div>
+				</div>
+				
+			</div>
+			<!--轮播-->
+			<div class="Min_swiper">
+				<div class="swiper-container swiper-container-horizontal swiper-container-android swiper-container-wp8-horizontal">
+					<div class="swiper-wrapper" style="transition-duration: 0ms; transform: translate3d(-1137px, 0px, 0px);">
+						
+						<div class="swiper-slide swiper-slide-next" style="width: 379px;">
+							<a href="">
+								<img src="https://lcy20.netlify.app/tp/IMG_20250411_013723.jpg">
+								<div class="text">
+									<p>
+										🍴ᗜ 𖥦 ᗜ★品尝这个世界
+									</p>
+								</div>
+							</a>
+						</div>
+						<div class="swiper-slide swiper-slide-next" style="width: 379px;">
+							<a href="">
+								<img src="https://lcy20.netlify.app/tp/IMG_20250424_235246.jpg">
+								<div class="text">
+									<p>
+									不萌则已 一萌惊人^ω^
+									</p>
+								</div>
+							</a>
+						</div>
+						<div class="swiper-slide swiper-slide-next" style="width: 379px;">
+							<a href="">
+								<img src="https://lcy20.netlify.app/tp/DD3163F5-3CE3-4BB4-BF50-57B9C18FF856.jpeg">
+								<div class="text">
+									<p>
+										明天会更好吗 等通知๑>ᴗO๑ಣ
+									</p>
+								</div>
+							</a>
+						</div>
+						<div class="swiper-slide" style="width: 379px;">
+							<a href="">
+								<img src="https://lcy20.netlify.app/tp/IMG_20240801_180129.jpg">
+								<div class="text">
+									<p>
+								蹲下摸摸自己的影子说没关系₍˄·͈༝·͈˄*₎੭
+									</p>
+								</div>
+							</a>
+						</div>
+						
+						<div class="swiper-slide" style="width: 379px;">
+							<a href="">
+								<img src="https://lcy20.netlify.app/tp/IMG_20240830_175856.jpg">
+								<div class="text">
+									<p>
+									如果生活不能拿捏 那就拿铁(⸝⸝>ᴗ<⸝⸝）
+									</p>
+								</div>
+							</a>
+						</div>
+						<div class="swiper-slide swiper-slide-prev" style="width: 379px;">
+							<a href="">
+								<img src="https://lcy20.netlify.app/tp/IMG_20240909_135950.jpg">
+								<div class="text">
+									<p>
+									う手写小猫开心日志₍˄ ₗ   ̫ ₗ ˄₎੭ﾞ。
+									</p>
+								</div>
+							</a>
+						</div>
+						<div class="swiper-slide swiper-slide-active" style="width: 379px;">
+							<a href="">
+								<img src="https://lcy20.netlify.app/tp/IMG_20240923_121317.jpg">
+								<div class="text">
+									<p>
+										我累累的 痛痛的 懒懒的 废废的 ꒰ᵔ•̀з•́ᵔ꒱
+									</p>
+								</div>
+							</a>
+						</div>
+						<div class="swiper-slide swiper-slide-active" style="width: 379px;">
+							<a href="">
+								<img src="https://lcy20.netlify.app/tp/IMG_20250626_032959.jpg">
+								<div class="text">
+									<p>
+										变身！小猫惡魔：☆…//★
+									</p>
+								</div>
+							</a>
+						</div>
+					</div>
+					<!-- Add Pagination -->
+					
+				</div>
+			</div>
+			<!--nav-->
+			<div class="Min_bj Min_nav mt_30">
+			        <div class="swiper-container">
+			            <div class="swiper-wrapper">
+			              
+			                <div class="swiper-slide"><a href="https://i.y.qq.com/n2/m/share/profile_v2/index.html?ADTAG=musicapp&encrypt_uin=oKci7iCzoK45oz**&singermid=004NnhVA0gKaHo">
+			                    
+			                    <p>QQ音乐作品</p>
+			                </a></div>
+			<div class="swiper-slide"><a href="http://m.kugou.com/singer/12010195">
+			                    
+			                    <p>酷狗音乐作品</p>
+			                </a></div>
+			                 <div class="swiper-slide"><a href="https://lcy20.netlify.app/xueli.html">
+			                    
+			                    <p>我的学历</p>
+			                </a></div>     
+			                <div class="swiper-slide"><a href="https://lcy20.netlify.app/gzjl.html">
+			                    
+			                    <p>工作历程</p>
+			                </a></div>     
+			
+			
+			                 
+			            </div>
+			        </div>
+			    </div>
+				</div>
+			</div>
+			
+			
+			
+			<!--时光卷轴-->
+			<div class="Min_bj">
+				<div class="title">
+					<div class="bt">
+						时光卷轴·录
+					</div>
+				</div>
+				<div class="Min9">
+					<div class="swiper_Classic">
+						<div class="swiper-container swiper-container-horizontal swiper-container-android swiper-container-wp8-horizontal">
+							<div class="swiper-wrapper" style="transform: translate3d(-991px, 0px, 0px); transition-duration: 0ms;">
+								
+								<div class="swiper-slide swiper-slide-duplicate-prev" data-swiper-slide-index="2"
+								style="width: 324.333px; margin-right: 6px;">
+									<a class="img">
+										<img src="https://lcy20.netlify.app/mlb/ml2024.png">
+									</a>
+								</div>
+								
+								
+								<!--
+								
+								 这中间位置放置最新年月模块导图
+								 
+								 -->
+									<div class="swiper-slide swiper-slide-duplicate-prev" data-swiper-slide-index="1"
+								style="width: 324.333px; margin-right: 6px;">
+									<a class="img">
+										<img src="https://lcy20.netlify.app/mlb/ml2026.png">
+									</a>
+								</div>
+        
+        
+								<div class="swiper-slide swiper-slide-duplicate-prev" data-swiper-slide-index="1"
+								style="width: 324.333px; margin-right: 6px;">
+									<a class="img">
+										<img src="https://lcy20.netlify.app/mlb/ml2025.png">
+									</a>
+								</div>
+								
+								
+								
+								
+								
+								
+							</div>
+						</div>
+					</div>
+					<div class="item_box">
+						
+						<div class="item">
+							<div class="bt box_flex">
+								<a class="bt_name box_flex_1">
+								2024年归档：
+								</a>
+								<div class="tab">
+									<span>
+										评分
+									</span>
+									<i>
+										95.3
+									</i>
+								</div>
+							</div>
+							<ul class="clearfix">
+								
+								<li>
+									<a href="https://lcy20.netlify.app/yue/202412.html">
+										12月
+									</a>
+								</li>
+								<li>
+									<a href="https://lcy20.netlify.app/yue/202411.html">
+										11月
+									</a>
+								</li>
+							 <li>
+							 	<a href="https://lcy20.netlify.app/yue/202410.html">
+							 		10月
+							 	</a>
+							 </li>
+							 <li>
+							 	<a href="https://lcy20.netlify.app/yue/202409.html">
+							 		9月
+							 	</a>
+							 </li>
+							 <li>
+							 	<a href="https://lcy20.netlify.app/yue/202408.html">
+							 		8月
+							 	</a>
+							 </li>
+							 <li>
+							 	<a href="https://lcy20.netlify.app/yue/202407.html">
+							 		7月
+							 	</a>
+							 </li>
+							 <li>
+							 	<a href="https://lcy20.netlify.app/yue/202406.html">
+							 		6月
+							 	</a>
+							 </li>
+							 <li>
+							 	<a href="">
+							 		以下暂无数据
+							 	</a>
+							 </li>
+						
+							</ul>
+						</div>
+						
+						
+						<!--
+						
+						 这中间位置放置最新年月模块 
+						 
+						 -->
+							<div class="item">
+							<div class="bt box_flex">
+								<a class="bt_name box_flex_1">
+									2026年归档：
+								</a>
+								<div class="tab">
+									<span>
+										评分
+									</span>
+									<i>
+										90.2
+									</i>
+								</div>
+							</div>
+							<ul class="clearfix">
+								<li>
+									<a href="https://lcy20.netlify.app/yue/202612.html">
+										12月
+									</a>
+								</li>
+								<li>
+									<a href="https://lcy20.netlify.app/yue/202611.html">
+										11月
+									</a>
+								</li>
+								<li>
+									<a href="https://lcy20.netlify.app/yue/202610.html">
+										10月
+									</a>
+							</li>
+								<li>
+									<a href="https://lcy20.netlify.app/yue/202609.html">
+										9月
+									</a>
+								</li>
+								<li>
+									<a href="https://lcy20.netlify.app/yue/202608.html">
+										8月
+									</a>
+								</li>
+								<li>
+									<a href="https://lcy20.netlify.app/yue/202607.html">
+										7月
+									</a>
+							</li>
+								<li>
+									<a href="https://lcy20.netlify.app/yue/202606.html">
+										6月
+									</a>
+								</li>
+								<li>
+									<a href="https://lcy20.netlify.app/yue/202605.html">
+										5月
+									</a>
+							</li>
+							<li>
+									<a href="https://lcy20.netlify.app/yue/202604.html">
+										4月
+									</a>
+								</li>
+								<li>
+									<a href="https://lcy20.netlify.app/yue/202603.html">
+										3月
+									</a>
+								</li>
+								<li>
+									<a href="https://lcy20.netlify.app/yue/202602.html">
+										2月
+									</a>
+								</li>
+								<li>
+									<a href="https://lcy20.netlify.app/yue/202601.html">
+										1月
+									</a>
+								</li>
+								<li>
+									<a href="">
+										以下暂无数据
+									</a>
+								</li>
+								
+							
+							</ul>
+							
+						</div>
+      
+      
+      
+						
+						<div class="item">
+							<div class="bt box_flex">
+								<a class="bt_name box_flex_1">
+									2025年归档：
+								</a>
+								<div class="tab">
+									<span>
+										评分
+									</span>
+									<i>
+										97.2
+									</i>
+								</div>
+							</div>
+							<ul class="clearfix">
+								<li>
+									<a href="https://lcy20.netlify.app/yue/202512.html">
+										12月
+									</a>
+								</li>
+								<li>
+									<a href="https://lcy20.netlify.app/yue/202511.html">
+										11月
+									</a>
+								</li>
+								<li>
+									<a href="https://lcy20.netlify.app/yue/202510.html">
+										10月
+									</a>
+							</li>
+								<li>
+									<a href="https://lcy20.netlify.app/yue/202509.html">
+										9月
+									</a>
+								</li>
+								<li>
+									<a href="https://lcy20.netlify.app/yue/202508.html">
+										8月
+									</a>
+								</li>
+								<li>
+									<a href="https://lcy20.netlify.app/yue/202507.html">
+										7月
+									</a>
+							</li>
+								<li>
+									<a href="https://lcy20.netlify.app/yue/202506.html">
+										6月
+									</a>
+								</li>
+								<li>
+									<a href="https://lcy20.netlify.app/yue/202505.html">
+										5月
+									</a>
+							</li>
+							<li>
+									<a href="https://lcy20.netlify.app/yue/202504.html">
+										4月
+									</a>
+								</li>
+								<li>
+									<a href="https://lcy20.netlify.app/yue/202503.html">
+										3月
+									</a>
+								</li>
+								<li>
+									<a href="https://lcy20.netlify.app/yue/202502.html">
+										2月
+									</a>
+								</li>
+								<li>
+									<a href="https://lcy20.netlify.app/yue/202501.html">
+										1月
+									</a>
+								</li>
+								<li>
+									<a href="">
+										以下暂无数据
+									</a>
+								</li>
+								
+							
+							</ul>
+							
+						</div>
+						
+						
+						
+						
+						
+					</div>
+				</div>
+			</div>
+			
+			<div class="Min_bj">
+				<div class="title">
+					<div class="bt">
+						时光集档
+					</div>
+				</div>
+				<div class="Min10">
+					<div class="swiper_strategy">
+						<div class="swiper-container swiper-container-horizontal swiper-container-android swiper-container-wp8-horizontal">
+							<div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);">
+								
+								
+								
+								<div class="swiper-slide" style="width: 129.63px; margin-right: 10px;">
+									<a href="https://lcy20.netlify.app/yjdl.html" class="img">
+										<img src="https://lcy20.netlify.app/yj/wb.jpg" style="height: 158px;">
+										<div class="tab">
+											月记
+										</div>
+									</a>
+									<a href="" class="tex">
+										~颖~的月记
+									</a>
+								</div>
+								
+							<div class="swiper-slide" style="width: 129.63px; margin-right: 10px;">
+									<a href="https://wenjian.netlify.app" class="img">
+										<img src="https://lcy20.netlify.app/wj.jpg" style="height: 158px;">
+										<div class="tab">
+											文件
+										</div>
+									</a>
+									<a href="" class="tex">
+										~颖~的文件
+									</a>
+								</div>
+							
+								
+								
+								
+								
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div> 
+			
+			
+			<!--其他模块-->
+			
+			
+			
+			<div class="Min_bj">
+				<div class="title">
+					<div class="bt">
+						其它
+					</div>
+					<a href="" class="more">
+						更多
+					</a>
+				</div>
+				<div class="Min11">
+					<ul>
+						
+						<li class="box_flex">
+							<a href="https://lcy20.netlify.app/jiugonggeqietu.html" class="bt">
+								小工具
+							</a>
+							<a href="https://lcy20.netlify.app/jiugonggeqietu.html" class="box_flex_1 tex">
+								九宫格切图制作
+							</a>
+							<span>
+								日期
+							</span>
+						</li>
+						<li class="box_flex">
+							<a href="https://lcy20.netlify.app/nljsq.html" class="bt">
+								小工具
+							</a>
+							<a href="nljsq.html" class="box_flex_1 tex">
+								年龄计算器
+							</a>
+							<span>
+								日期
+							</span>
+						</li>
+						<li class="box_flex">
+							<a href="https://codeload.github.com/zwcx520/lcy20.github.io/zip/refs/heads/main" class="bt">
+								模块
+							</a>
+							<a href="https://codeload.github.com/zwcx520/lcy20.github.io/zip/refs/heads/main" class="box_flex_1 tex">
+								模块3
+							</a>
+							<span>
+								日期
+							</span>
+						</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+			 
+			 
+			 
+			 
+			 
+			<div class="Min_bj">
+				<div class="title">
+					
+				</div>
+							
+			</div>
+			
+			<footer style="border-radius: 10px 10px 10px 10px;position: fixed;  bottom: 0px; width: 100%;list-style-type: none;margin: 0;  padding: 0; overflow: hidden;z-index: 9999; background:linear-gradient(to left,rgb(198, 255, 221), rgb(251, 215, 134) );">
+				
+				<div class="bot">
+					
+				
+					<a href="https://lcy20.netlify.app/xzy.html" class="Phone">
+						<i>
+						</i>
+						<span>
+							APP下载
+						</span>
+					</a>
+					<a href="javascript:void(0)" class="up">
+						<i>
+						</i>
+						<span>
+							顶部
+						</span>
+					</a>
+				</div>
+				<a href="https://lcy20.netlify.app/gdewm.jpg"> <img class="image" alt="联系二维码" src="https://lcy20.netlify.app/gdewm.jpg"/>
+				     </a>
+			</footer>
+			<script src="https://lcy20.netlify.app/jss/lazyload.js">
+			</script>
+			<script src="https://lcy20.netlify.app/jss/common.js">
+			</script>
+			<div style="display: none;">
+				
+			</div>
+			<script src="https://lcy20.netlify.app/jss/user.js">
+			</script>
+			<script src="jss/TCaptcha.js">
+			</script>
+			<script src="tanchuang.j">
+			</script>
+			
+		
+			<script src="https://lcy20.netlify.app/jss/app_cookies_alert.js">
+			</script>
+		</div>
+		<script src="https://lcy20.netlify.app/jss/swiper4.js">
+		</script>
+		<script src="https://lcy20.netlify.app/jss/comment2.0.js">
+		</script>
+
+
+      <script>
+    function showCustomAlert(message) {
+      const alertDiv = document.createElement('div');
+      alertDiv.className = 'custom-alert';
+      alertDiv.textContent = message;
+      document.body.appendChild(alertDiv);
+      setTimeout(() => {
+        document.body.removeChild(alertDiv);
+      }, 3000); // 3秒后自动关闭弹窗
+    }
+
+    // 页面加载时先检查网络状态
+    if (navigator.onLine === false) {
+      showCustomAlert('网络已断开，请检查您的网络连接（可能没有 Wi-Fi 或移动数据等网络连接）');
+    }
+
+    // 监听网络断开事件
+    window.addEventListener('offline', function () {
+      showCustomAlert('网络已断开，请检查您的网络连接（可能没有 Wi-Fi 或移动数据等网络连接）');
+    });
+
+    // 监听网络连接事件
+    window.addEventListener('online', function () {
+      showCustomAlert('网络已连接成功！');
+      location.reload(); // 添加这行代码，在网络连接成功时刷新页面
+    });
+  </script>
+  
+  
+		
+		<div id="tcaptcha_transform_dy" style="opacity: 0; position: absolute; transition: opacity 0.3s linear; top: -1e+06px;">
+			<iframe name="t.captcha.qq.com" id="tcaptcha_iframe_dy" frameborder="0"
+			border="0" marginheight="0" marginwidth="0" scrolling="no" src="">
+			</iframe>
+		</div>
+	</body>
+
+</html>
+
+
+
+
+
+
+
+
